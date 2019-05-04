@@ -7,6 +7,7 @@ import java.nio.channels.Selector;
 import java.nio.channels.ServerSocketChannel;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -16,7 +17,7 @@ public
 
     private ServerSocketChannel socketChannel;
     private Selector selector;
-    private ScheduledExecutorService thread;
+    private ExecutorService thread;
 
     static Map<SelectionKey, ClientHandler> clientMap;
 
@@ -29,7 +30,7 @@ public
     }
 
     {
-        this.thread = Executors.newSingleThreadScheduledExecutor();
+        this.thread = Executors.newSingleThreadExecutor();
     }
 
     private ServerCommunicationHandler(ServerSocketChannel socketChannel, Selector selector) {
@@ -39,9 +40,8 @@ public
 
 
     public void run() {
-        this.thread.schedule(
-            () -> oneIteration() ,
-            1000, TimeUnit.MILLISECONDS
+        this.thread.execute(
+            this::run2
         );
     }
 
@@ -70,4 +70,9 @@ public
     }
 
 
+    private void run2() {
+        while (true) {
+            oneIteration();
+        }
+    }
 }

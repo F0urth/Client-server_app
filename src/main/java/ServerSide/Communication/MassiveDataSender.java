@@ -62,7 +62,8 @@ public
                     out.writeObject(one);
                     out.flush();
                 }
-            out.writeInt(-1);
+                out.writeInt(-1);
+                out.flush();
             } catch (IOException e) {
                 e.printStackTrace();
             }

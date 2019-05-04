@@ -31,6 +31,7 @@ class DataLoader {
                 data.add((MergedData) input.readObject());
                 System.out.println("ReadedObject XDDDD");
             }
+            System.out.println("geted data");
             var mappedData = data.stream().collect(
                 Collectors.groupingBy(MergedData::getNazwa));
             Controler.INSTANCE.setData(mappedData);

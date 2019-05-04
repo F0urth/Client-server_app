@@ -1,18 +1,12 @@
 package ClientSide.Communication;
 
-import javax.management.Query;
-import javax.persistence.criteria.CriteriaBuilder;
 import javax.swing.*;
 import java.io.IOException;
 import java.nio.ByteBuffer;
-import java.nio.channels.SelectionKey;
-import java.nio.channels.Selector;
 import java.nio.channels.SocketChannel;
 import java.util.Queue;
-import java.util.Set;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
 
 /**
  * @author F0urth
@@ -37,13 +31,12 @@ public
     }
 
     public void run() {
-        Executors.newSingleThreadScheduledExecutor()
-            .schedule(
-                this::oneIteration,
-                1000, TimeUnit.MILLISECONDS);
+        Executors.newSingleThreadExecutor()
+            .execute(this::runner);
     }
 
     private void oneIteration() {
+       // System.out.println("One Iteration CommunicationHandler.class presents");
         if (!outQueue.isEmpty()) {
             try {
                 this.channel.write(ByteBuffer.wrap(outQueue.poll().getBytes()));
@@ -92,5 +85,10 @@ public
             JOptionPane.showMessageDialog(new JFrame(), ex.getMessage(),
                 "Exception", JOptionPane.WARNING_MESSAGE);
         }
+    }
+
+    private void runner() {
+        while (true)
+            oneIteration();
     }
 }
