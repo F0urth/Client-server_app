@@ -8,7 +8,7 @@ import java.io.ObjectInputStream;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.stream.Collectors;
 
 class DataLoader {
 
@@ -29,6 +29,11 @@ class DataLoader {
             while (input.readInt() != -1) {
                 data.add((MergedData) input.readObject());
             }
+            var mappedData = data.stream().collect(
+                Collectors.toMap(
+                    MergedData::getNazwa, e -> e,
+                    (oldKey, newKey) -> oldKey
+                ));
 
         } catch (IOException e) {
             e.printStackTrace();
