@@ -84,6 +84,6 @@ public
     public void changeActionListener() {
         this.chat.removeActionListener(this.listener);
         this.listener = l -> Controller.INSTANCE.getChat();
-        this.chat.addActionListener(listener);
+        this.chat.addActionListener(this.listener);
     }
 }

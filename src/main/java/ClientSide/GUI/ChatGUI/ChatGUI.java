@@ -32,10 +32,14 @@ public
             l -> {
                 var massage = userMassage.getText();
                 toOut.add(massage);
-                massages.append("Ty => " + massage);
+                massages.append("Ty => " + massage + "\n");
                 userMassage.setText("");
             }
         );
+    }
+
+    public void appendMassage(String massage) {
+        this.massages.append(massage + "\n");
     }
 
     {
