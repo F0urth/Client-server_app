@@ -29,6 +29,7 @@ class DataLoader {
             var data = new ArrayList<MergedData>();
             while (input.readInt() != -1) {
                 data.add((MergedData) input.readObject());
+                System.out.println("ReadedObject XDDDD");
             }
             var mappedData = data.stream().collect(
                 Collectors.groupingBy(MergedData::getNazwa));

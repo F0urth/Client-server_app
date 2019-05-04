@@ -1,5 +1,6 @@
 package ClientSide;
 
+import ClientSide.Communication.CommunicationHandler;
 import ClientSide.GUI.FrontGUI;
 
 import java.io.IOException;
@@ -16,13 +17,12 @@ public
 
     public static void main(String[] args) throws IOException {
         SocketChannel channel = SocketChannel.open();
-        channel.bind(
+        channel.connect(
             new InetSocketAddress("localhost", 1337));
 
 
-
-        FrontGUI.getInstance(
-            Collections.EMPTY_LIST)
-            .run();
+        var commu = CommunicationHandler.getInstance(channel);
+        commu.run();
+        commu.addToOutQueue(">@!GetData");
     }
 }

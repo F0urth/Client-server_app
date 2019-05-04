@@ -1,5 +1,6 @@
 package ServerSide.Communication;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
@@ -56,6 +57,8 @@ public
                     channel.configureBlocking(false);
                     var readKey = channel.register(this.selector, SelectionKey.OP_READ);
                     clientMap.put(readKey, new ClientHandler(readKey, channel));
+                    JOptionPane.showMessageDialog(new JFrame(), "new Client Addded",
+                        "Yupi", JOptionPane.INFORMATION_MESSAGE);
                 }
                 if (key.isReadable()) clientMap.get(key).read();
             }

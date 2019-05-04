@@ -80,6 +80,9 @@ public
         }
     }
 
+    public void addToOutQueue(String massage) {
+        this.outQueue.add(massage);
+    }
 
 
     private void disconnect() {

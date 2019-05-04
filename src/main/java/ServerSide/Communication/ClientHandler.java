@@ -28,6 +28,7 @@ class ClientHandler {
         buffer.flip();
         var massage = new String(buffer.array()).trim();
         if (massage.equals(">@!GetData")) {
+            System.out.println("Asked for DATA");
             this.channel.write(
                 ByteBuffer.wrap(String.valueOf(4444).getBytes()));
             delegateProtocol();

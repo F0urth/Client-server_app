@@ -38,9 +38,10 @@ public
             () -> {
                 try {
                     var socket = serverSocket.accept();
+                    System.out.println("Client gonna get Data");
                     new Client(socket)
                         .send(this.allData);
-                } catch (IOException e) {/*Ignored*/}
+                } catch (IOException e) {e.printStackTrace();}
             });
     }
 
