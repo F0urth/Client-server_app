@@ -18,10 +18,7 @@ public
                 var button = new JButton("RedExit");
                 button.setBackground(Color.RED);
                 button.addActionListener(
-                    l -> {
-                        System.exit(0);
-                    }
-                );
+                    l -> System.exit(0));
                 frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
                 frame.add(button);
                 frame.setVisible(true);

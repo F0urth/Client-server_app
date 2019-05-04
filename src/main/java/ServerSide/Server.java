@@ -22,6 +22,7 @@ public
     {
         try {
             var serverChannel = ServerSocketChannel.open();
+            serverChannel.configureBlocking(false);
             var addres = new InetSocketAddress("localhost", 1337);
             var selector = Selector.open();
             serverChannel.bind(addres);
