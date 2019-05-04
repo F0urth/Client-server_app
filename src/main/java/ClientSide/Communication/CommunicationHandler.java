@@ -1,11 +1,15 @@
 package ClientSide.Communication;
 
+import javax.management.Query;
+import javax.swing.*;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.SocketChannel;
+import java.util.Queue;
 import java.util.Set;
+import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
@@ -17,8 +21,8 @@ public
     class CommunicationHandler {
 
     private SocketChannel channel;
-    private Selector selector;
-
+    private Queue<String> inQueue, outQueue;
+    private ByteBuffer buffer;
     public static CommunicationHandler getInstance(SocketChannel channel) throws IOException {
         return new CommunicationHandler(channel);
     }
@@ -26,58 +30,48 @@ public
     private CommunicationHandler(SocketChannel sc) throws IOException {
         this.channel = sc;
         this.channel.configureBlocking(false);
-        this.channel.register(
-            this.selector = Selector.open(), SelectionKey.OP_ACCEPT);
+        this.inQueue = new ConcurrentLinkedQueue<>();
+        this.outQueue= new ConcurrentLinkedQueue<>();
+        this.buffer = ByteBuffer.allocate(1024);
     }
 
     public void run() {
         Executors.newSingleThreadScheduledExecutor()
             .schedule(
-                this::oneIteration,1000, TimeUnit.MILLISECONDS);
+                this::oneIteration,
+                1000, TimeUnit.MILLISECONDS);
     }
 
     private void oneIteration() {
-        try {
-            this.selector.selectNow();
-            Set<SelectionKey> keys = this.selector.selectedKeys();
 
-            for (SelectionKey key : keys) {
-                if (!key.isValid()) continue;
-                if (key.isReadable()) read(key);
-                if (key.isWritable()) write(key);
-                if (key.isAcceptable()) accept(key);
-                if (key.isConnectable()) connect(key);
+    }
+
+    private void read() {
+        try {
+            int amo_read = -1;
+            try {
+                amo_read = channel.read(
+                    buffer.clear());
+            } catch (Exception ex){
+                System.out.println(ex);
+            }
+            if (amo_read == -1) disconnect();
+            if (amo_read < 1) return;
+            buffer.flip();
+            var massage = new String(buffer.array()).trim();
+            if (massage.matches("[0-9]+")){
 
             }
-            this.selector.selectedKeys().clear();
-        } catch (IOException e) {
-            e.printStackTrace();
+
+        } catch (Exception ex) {
+            disconnect();
+            JOptionPane.showMessageDialog(new JFrame(), ex.getMessage(),
+                "Exception", JOptionPane.WARNING_MESSAGE);
         }
     }
 
-    //TODO
-    private void connect(SelectionKey key) {
 
-    }
 
-    //TODO
-    private void accept(SelectionKey key) {
-
-    }
-
-    //TODO
-    private void write(SelectionKey key) {
-
-    }
-
-    //TODO
-    private void read(SelectionKey key) {
-        var buffer = ByteBuffer
-            .allocate(1024);
-        try {
-            this.channel.read(buffer);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    private void disconnect() {
     }
 }
