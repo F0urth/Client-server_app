@@ -2,7 +2,8 @@ package ClientSide.Communication;
 
 
 import ClientSide.Controller;
-import ServerSide.Databases.MergedData;
+import Absolute.MergedData;
+
 
 import java.io.IOException;
 import java.io.ObjectInputStream;

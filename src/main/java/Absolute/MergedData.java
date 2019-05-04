@@ -1,4 +1,4 @@
-package ServerSide.Databases;
+package Absolute;
 
 import java.io.Serializable;
 import java.util.Date;

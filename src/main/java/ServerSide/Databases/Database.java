@@ -1,5 +1,6 @@
 package ServerSide.Databases;
 
+import Absolute.MergedData;
 import ServerSide.Databases.DataTables.Cena;
 import ServerSide.Databases.DataTables.Produkt;
 import org.hibernate.Session;

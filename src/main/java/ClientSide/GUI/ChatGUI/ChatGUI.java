@@ -46,6 +46,11 @@ public
 
     }
 
+    public void addMassiveMassges(Queue<String> massages) {
+        String massage;
+        while ((massage = massages.poll()) != null) appendMassage(massage);
+    }
+
     public void appendMassage(String massage) {
         this.massages.append(massage + "\n");
     }

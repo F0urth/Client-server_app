@@ -1,6 +1,6 @@
 package ServerSide.Communication;
 
-import ServerSide.Databases.MergedData;
+import Absolute.MergedData;
 
 import java.io.IOException;
 import java.io.ObjectOutputStream;

@@ -65,8 +65,7 @@ public
                 new DataLoader(Integer.valueOf(massage)).loadData();
             } else {
                 Controller.INSTANCE
-                    .getChat()
-                    .appendMassage(massage);
+                    .appendToChatMassages(massage);
             }
 
         } catch (Exception ex) {
