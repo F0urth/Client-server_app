@@ -7,8 +7,9 @@ import javax.swing.*;
 import java.awt.*;
 
 public
-class ChatGUI
-    extends JFrame {
+    class ChatGUI
+        extends JFrame {
+
     private JPanel rootPanel;
     private JButton send;
     private JTextArea userMassage;

@@ -7,8 +7,8 @@ import javax.swing.*;
 import java.awt.*;
 
 public
-class Login
-    extends JFrame {
+    class Login
+        extends JFrame {
 
     private JPanel rootPanel;
     private JButton sendNickButton;
