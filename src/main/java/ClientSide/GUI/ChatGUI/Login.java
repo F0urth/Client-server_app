@@ -1,5 +1,6 @@
 package ClientSide.GUI.ChatGUI;
 
+import ClientSide.Controller;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 
@@ -31,6 +32,7 @@ public
             l -> {
                 String nick = userNick.getText();
                 this.dispose();
+                Controller.INSTANCE.addToMassage("<Nick>"+nick);
                 new ChatGUI(nick);
             });
     }

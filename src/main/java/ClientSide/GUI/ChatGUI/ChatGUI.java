@@ -31,7 +31,7 @@ public
         this.send.addActionListener(
             l -> {
                 var massage = userMassage.getText();
-                toOut.add(this.nick + " => " +massage);
+                toOut.add(massage);
                 massages.append("Ty => " + massage);
                 userMassage.setText("");
             }

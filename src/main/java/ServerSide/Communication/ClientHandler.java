@@ -40,7 +40,7 @@ class ClientHandler {
             targets.remove(this.readKey);
             for (var target : targets.entrySet()) {
                 target.getValue().channel.write(
-                    ByteBuffer.wrap((this.nick + massage).getBytes()));
+                    ByteBuffer.wrap((this.nick + " => " + massage).getBytes()));
             }
         }
     }
