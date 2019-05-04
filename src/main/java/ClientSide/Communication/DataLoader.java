@@ -1,7 +1,7 @@
 package ClientSide.Communication;
 
 
-import ClientSide.Controler;
+import ClientSide.Controller;
 import ServerSide.Databases.MergedData;
 
 import java.io.IOException;
@@ -29,17 +29,23 @@ class DataLoader {
             var data = new ArrayList<MergedData>();
             while (input.readInt() != -1) {
                 data.add((MergedData) input.readObject());
-                System.out.println("ReadedObject XDDDD");
+                System.out.println("ReadedObject From server");
             }
             System.out.println("geted data");
             var mappedData = data.stream().collect(
                 Collectors.groupingBy(MergedData::getNazwa));
-            Controler.INSTANCE.setData(mappedData);
-            Controler.INSTANCE.start();
+            Controller.INSTANCE.setData(mappedData);
+            Controller.INSTANCE.start();
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                socket.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
     }

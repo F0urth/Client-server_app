@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public
-    enum Controler {
+    enum Controller {
     INSTANCE;
 
     private Map<String, List<MergedData>> dataMap;

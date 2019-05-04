@@ -44,7 +44,6 @@ public
                         new Dimension(1024,768));
                     this.setDefaultCloseOperation(
                         JFrame.EXIT_ON_CLOSE);
-                    this.setResizable(false);
                     this.setTitle("ChartGUI");
 
                     //***MenusSetup***
@@ -69,9 +68,11 @@ public
                     chat.addActionListener(
                         l -> Login.getInstance());
 
+                    menu.add(chat);
                     //***Add Chart to the center***
                     XChartPanel<XYChart> chartPanel = new XChartPanel<>(
                         this.centerChart.getChart());
+                    this.setJMenuBar(this.menuBar);
                     this.add(chartPanel, BorderLayout.CENTER);
                     this.setVisible(true);
                 });
