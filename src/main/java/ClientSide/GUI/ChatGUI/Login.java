@@ -32,8 +32,10 @@ public
             l -> {
                 String nick = userNick.getText();
                 this.dispose();
-                Controller.INSTANCE.addToMassage("<Nick>"+nick);
-                new ChatGUI(nick);
+                Controller.INSTANCE
+                    .addToMassage("<Nick>"+nick);
+                Controller.INSTANCE
+                    .setChat(new ChatGUI(nick));
             });
     }
 

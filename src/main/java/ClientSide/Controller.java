@@ -2,6 +2,7 @@ package ClientSide;
 
 import ClientSide.Communication.CommunicationHandler;
 import ClientSide.DataConteners.ChartData;
+import ClientSide.GUI.ChatGUI.ChatGUI;
 import ClientSide.GUI.FrontGUI;
 import ServerSide.Databases.MergedData;
 
@@ -17,6 +18,8 @@ public
     private Map<String, List<MergedData>> dataMap;
     private List<ChartData> data;
     private CommunicationHandler communicationHandler;
+    private FrontGUI gui;
+    private ChatGUI chat;
 
 
     public void setData(Map<String, List<MergedData>> data) {
@@ -39,7 +42,8 @@ public
                     .build()
             );
         }
-        FrontGUI.getInstance(this.data).run();
+        this.gui = FrontGUI.getInstance(this.data);
+        this.gui.run();
     }
 
     void setCommunicationHandler(CommunicationHandler cm) {
@@ -48,5 +52,14 @@ public
 
     public void addToMassage(String massage) {
         this.communicationHandler.addToOutQueue(massage);
+    }
+
+    public void setChat(ChatGUI chat) {
+        this.chat = chat;
+        this.gui.changeActionListener();
+    }
+
+    public ChatGUI getChat() {
+        return this.chat;
     }
 }

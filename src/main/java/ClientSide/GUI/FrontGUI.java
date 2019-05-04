@@ -1,5 +1,6 @@
 package ClientSide.GUI;
 
+import ClientSide.Controller;
 import ClientSide.DataConteners.ChartData;
 import ClientSide.DataConteners.StatisticedChartData;
 import ClientSide.GUI.Charts.CenterChart;
@@ -9,6 +10,7 @@ import org.knowm.xchart.XChartPanel;
 import org.knowm.xchart.XYChart;
 
 import javax.swing.*;
+import java.awt.event.ActionListener;
 import java.util.List;
 import java.awt.*;
 import java.util.concurrent.Executors;
@@ -25,8 +27,8 @@ public
     private List<ChartData> data;
     private JMenuBar menuBar;
     private JMenu menu, submenu;
-
-
+    private JMenuItem chat;
+    private ActionListener listener;
     public static FrontGUI getInstance(List<ChartData> data) {
         return new FrontGUI(data);
     }
@@ -64,9 +66,10 @@ public
                         submenu.add(jmi);
                     }
 
-                    JMenuItem chat = new JMenuItem("Chat");
+                    this.chat = new JMenuItem("Chat");
                     chat.addActionListener(
-                        l -> Login.getInstance());
+                        (this.listener = l -> Login.getInstance())
+                    );
 
                     menu.add(chat);
                     //***Add Chart to the center***
@@ -76,5 +79,11 @@ public
                     this.add(chartPanel, BorderLayout.CENTER);
                     this.setVisible(true);
                 });
+    }
+
+    public void changeActionListener() {
+        this.chat.removeActionListener(this.listener);
+        this.listener = l -> Controller.INSTANCE.getChat();
+        this.chat.addActionListener(listener);
     }
 }
