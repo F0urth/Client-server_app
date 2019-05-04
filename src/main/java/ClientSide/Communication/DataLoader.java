@@ -1,6 +1,7 @@
 package ClientSide.Communication;
 
 
+import ClientSide.Controler;
 import ServerSide.Databases.MergedData;
 
 import java.io.IOException;
@@ -30,11 +31,9 @@ class DataLoader {
                 data.add((MergedData) input.readObject());
             }
             var mappedData = data.stream().collect(
-                Collectors.toMap(
-                    MergedData::getNazwa, e -> e,
-                    (oldKey, newKey) -> oldKey
-                ));
-
+                Collectors.groupingBy(MergedData::getNazwa));
+            Controler.INSTANCE.setData(mappedData);
+            Controler.INSTANCE.start();
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
