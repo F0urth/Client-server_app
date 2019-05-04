@@ -1,5 +1,7 @@
 package ClientSide.Communication;
 
+import ClientSide.Controller;
+
 import javax.swing.*;
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -16,7 +18,7 @@ public
     class CommunicationHandler {
 
     private SocketChannel channel;
-    private Queue<String> inQueue, outQueue;
+    private Queue<String> outQueue;
     private ByteBuffer buffer;
     public static CommunicationHandler getInstance(SocketChannel channel) throws IOException {
         return new CommunicationHandler(channel);
@@ -25,7 +27,6 @@ public
     private CommunicationHandler(SocketChannel sc) throws IOException {
         this.channel = sc;
         this.channel.configureBlocking(false);
-        this.inQueue = new ConcurrentLinkedQueue<>();
         this.outQueue= new ConcurrentLinkedQueue<>();
         this.buffer = ByteBuffer.allocate(1024);
     }
@@ -63,7 +64,9 @@ public
             if (massage.matches("[0-9]+")){
                 new DataLoader(Integer.valueOf(massage)).loadData();
             } else {
-                inQueue.add(massage);
+                Controller.INSTANCE
+                    .getChat()
+                    .appendMassage(massage);
             }
 
         } catch (Exception ex) {

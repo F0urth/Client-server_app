@@ -44,8 +44,6 @@ public
                 () -> {
                     this.setSize(
                         new Dimension(1024,768));
-                    this.setDefaultCloseOperation(
-                        JFrame.EXIT_ON_CLOSE);
                     this.setTitle("ChartGUI");
 
                     //***MenusSetup***
@@ -76,6 +74,7 @@ public
                     XChartPanel<XYChart> chartPanel = new XChartPanel<>(
                         this.centerChart.getChart());
                     this.setJMenuBar(this.menuBar);
+                    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                     this.add(chartPanel, BorderLayout.CENTER);
                     this.setVisible(true);
                 });
@@ -83,7 +82,8 @@ public
 
     public void changeActionListener() {
         this.chat.removeActionListener(this.listener);
-        this.listener = l -> Controller.INSTANCE.getChat();
+        this.listener = l -> Controller.INSTANCE.getChat().setVisible(true);
         this.chat.addActionListener(this.listener);
+
     }
 }
