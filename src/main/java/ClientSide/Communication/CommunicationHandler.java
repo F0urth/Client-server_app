@@ -1,6 +1,7 @@
 package ClientSide.Communication;
 
 import javax.management.Query;
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.swing.*;
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -60,7 +61,7 @@ public
             buffer.flip();
             var massage = new String(buffer.array()).trim();
             if (massage.matches("[0-9]+")){
-
+                new DataLoader(Integer.valueOf(massage)).loadData();
             }
 
         } catch (Exception ex) {
@@ -73,5 +74,11 @@ public
 
 
     private void disconnect() {
+        try {
+            this.channel.close();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(new JFrame(), ex.getMessage(),
+                "Exception", JOptionPane.WARNING_MESSAGE);
+        }
     }
 }
