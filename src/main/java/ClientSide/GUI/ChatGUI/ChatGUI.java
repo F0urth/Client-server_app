@@ -5,6 +5,8 @@ import com.intellij.uiDesigner.core.GridLayoutManager;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Queue;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 public
     class ChatGUI
@@ -16,14 +18,24 @@ public
     private JTextArea massages;
     private JPanel chatPanel;
     private String nick;
+    private Queue<String> toOut;
 
     public ChatGUI(String nick) {
+        this.toOut = new ConcurrentLinkedQueue<>();
         this.setSize(1024, 768);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setTitle("Chat");
         this.setVisible(true);
         this.add(rootPanel);
         this.nick = nick;
+        this.send.addActionListener(
+            l -> {
+                var massage = userMassage.getText();
+                toOut.add(this.nick + " => " +massage);
+                massages.append("Ty => " + massage);
+                userMassage.setText("");
+            }
+        );
     }
 
     {

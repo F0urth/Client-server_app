@@ -22,7 +22,7 @@ public
 
     private Login() {
         this.setSize(300, 200);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setTitle("Login");
         this.setVisible(true);
         this.add(rootPanel);
@@ -33,8 +33,6 @@ public
                 this.dispose();
                 new ChatGUI(nick);
             });
-
-        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
     {

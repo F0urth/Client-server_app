@@ -1,5 +1,6 @@
 package ClientSide;
 
+import ClientSide.Communication.CommunicationHandler;
 import ClientSide.DataConteners.ChartData;
 import ClientSide.GUI.FrontGUI;
 import ServerSide.Databases.MergedData;
@@ -15,7 +16,7 @@ public
 
     private Map<String, List<MergedData>> dataMap;
     private List<ChartData> data;
-
+    private CommunicationHandler communicationHandler;
 
 
     public void setData(Map<String, List<MergedData>> data) {
@@ -39,5 +40,13 @@ public
             );
         }
         FrontGUI.getInstance(this.data).run();
+    }
+
+    void setCommunicationHandler(CommunicationHandler cm) {
+        this.communicationHandler = cm;
+    }
+
+    public void addToMassage(String massage) {
+        this.communicationHandler.addToOutQueue(massage);
     }
 }

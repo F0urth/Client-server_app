@@ -19,10 +19,9 @@ public
         SocketChannel channel = SocketChannel.open();
         channel.connect(
             new InetSocketAddress("localhost", 1337));
-
-
         var commu = CommunicationHandler.getInstance(channel);
         commu.run();
         commu.addToOutQueue(">@!GetData");
+        Controller.INSTANCE.setCommunicationHandler(commu);
     }
 }
