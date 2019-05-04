@@ -44,7 +44,14 @@ public
     }
 
     private void oneIteration() {
-
+        if (!outQueue.isEmpty()) {
+            try {
+                this.channel.write(ByteBuffer.wrap(outQueue.poll().getBytes()));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        read();
     }
 
     private void read() {
@@ -62,6 +69,8 @@ public
             var massage = new String(buffer.array()).trim();
             if (massage.matches("[0-9]+")){
                 new DataLoader(Integer.valueOf(massage)).loadData();
+            } else {
+                inQueue.add(massage);
             }
 
         } catch (Exception ex) {

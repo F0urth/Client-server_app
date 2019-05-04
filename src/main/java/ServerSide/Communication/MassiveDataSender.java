@@ -55,13 +55,15 @@ public
         }
 
         private void send(List<MergedData> data) {
-            for (var one : data) {
-                try {
+            try {
+                for (var one : data) {
+                    out.writeInt(1);
                     out.writeObject(one);
                     out.flush();
-                } catch (IOException e) {
-                    e.printStackTrace();
                 }
+            out.writeInt(-1);
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
     }
