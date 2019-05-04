@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 5.3//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="ServerSide.Databases.DataTables.Cena" table="Cena">
+        <id name="idCena" column="idCena">
+            <generator class="assigned"></generator>
+        </id>
+
+        <property name="idCena"></property>
+        <property name="date"></property>
+        <property name="price"></property>
+        <property name="idProdukt"></property>
+
+
+    </class>
+
+</hibernate-mapping>
