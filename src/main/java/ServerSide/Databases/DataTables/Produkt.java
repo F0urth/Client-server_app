@@ -1,5 +1,9 @@
 package ServerSide.Databases.DataTables;
 
+/**
+ * @author F0urth
+ */
+
 public
     class Produkt {
 

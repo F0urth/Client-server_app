@@ -10,6 +10,10 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+/**
+ * @author F0urth
+ */
+
 public
     enum MassiveDataSender {
 

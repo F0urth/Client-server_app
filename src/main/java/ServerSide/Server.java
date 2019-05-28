@@ -10,6 +10,10 @@ import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.ServerSocketChannel;
 
+/**
+ * @author F0urth
+ */
+
 public
     enum Server {
     INSTANCE;

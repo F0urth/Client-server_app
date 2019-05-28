@@ -12,6 +12,10 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
+/**
+ * @author F0urth
+ */
+
 class DataLoader {
 
     private Socket socket = null;

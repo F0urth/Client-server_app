@@ -15,6 +15,10 @@ import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.stream.Collectors;
 
+/**
+ * @author F0urth
+ */
+
 public
     enum Controller {
     INSTANCE;

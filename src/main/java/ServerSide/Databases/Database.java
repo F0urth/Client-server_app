@@ -1,5 +1,6 @@
 package ServerSide.Databases;
 
+
 import Absolute.MergedData;
 import ServerSide.Databases.DataTables.Cena;
 import ServerSide.Databases.DataTables.Produkt;
@@ -10,6 +11,10 @@ import org.hibernate.query.Query;
 
 import java.util.ArrayList;
 import java.util.List;
+
+/**
+ * @author F0urth
+ */
 
 public final
     class Database {
@@ -51,12 +56,10 @@ public final
     }
 
     private<T> List<T> getData(Query<T> query, Session session) {
-
         session.beginTransaction();
         var prices = query.list();
         session.getTransaction().commit();
         session.close();
-
         return prices;
     }
 }

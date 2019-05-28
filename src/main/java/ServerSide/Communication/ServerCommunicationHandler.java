@@ -9,6 +9,10 @@ import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+/**
+ * @author F0urth
+ */
+
 public
     class ServerCommunicationHandler {
 
@@ -68,8 +72,6 @@ public
 
 
     private void run2() {
-        while (true) {
-            oneIteration();
-        }
+        while (true) oneIteration();
     }
 }

@@ -7,6 +7,10 @@ import com.intellij.uiDesigner.core.GridLayoutManager;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * @author F0urth
+ */
+
 public
     class Login
         extends JFrame {

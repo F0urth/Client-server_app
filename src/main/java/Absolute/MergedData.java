@@ -3,7 +3,13 @@ package Absolute;
 import java.io.Serializable;
 import java.util.Date;
 
-public class MergedData implements Serializable {
+/**
+ * @author F0urth
+ */
+
+public
+    class MergedData
+        implements Serializable {
 
     public static final long serialVersionUID = -1337L;
 
@@ -13,7 +19,7 @@ public class MergedData implements Serializable {
     private final String nazwa;
 
 
-    MergedData(Integer idCena, Date data, Double price, String nazwa) {
+    public MergedData(Integer idCena, Date data, Double price, String nazwa) {
         this.idCena = idCena;
         this.data = data;
         this.price = price;

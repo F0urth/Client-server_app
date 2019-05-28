@@ -9,6 +9,10 @@ import java.awt.*;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
+/**
+ * @author F0urth
+ */
+
 public
     class ChatGUI
         extends JFrame {

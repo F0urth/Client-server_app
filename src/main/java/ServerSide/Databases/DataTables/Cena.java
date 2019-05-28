@@ -2,6 +2,10 @@ package ServerSide.Databases.DataTables;
 
 import java.util.Date;
 
+/**
+ * @author F0urth
+ */
+
 public
     class Cena {
 

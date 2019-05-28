@@ -8,6 +8,10 @@ import java.nio.channels.SelectionKey;
 import java.nio.channels.SocketChannel;
 import java.util.HashMap;
 
+/**
+ * @author F0urth
+ */
+
 class ClientHandler {
 
 

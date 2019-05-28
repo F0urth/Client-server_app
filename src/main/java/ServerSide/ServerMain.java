@@ -5,6 +5,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.concurrent.Executors;
 
+/**
+ * @author F0urth
+ */
+
 public
     class ServerMain {
 
