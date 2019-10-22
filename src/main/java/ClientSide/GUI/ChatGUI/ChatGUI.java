@@ -7,15 +7,14 @@ import com.intellij.uiDesigner.core.GridLayoutManager;
 import javax.swing.*;
 import java.awt.*;
 import java.util.Queue;
-import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**
  * @author F0urth
  */
 
 public
-    class ChatGUI
-        extends JFrame {
+class ChatGUI
+    extends JFrame {
 
     private JPanel rootPanel;
     private JButton send;

@@ -1,9 +1,8 @@
 package ClientSide.Communication;
 
 
-import ClientSide.Controller;
 import Absolute.MergedData;
-
+import ClientSide.Controller;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -38,12 +37,10 @@ class DataLoader {
             }
             System.out.println("geted data");
             var mappedData = data.stream().collect(
-                Collectors.groupingBy(MergedData::getNazwa));
+                Collectors.groupingBy(MergedData::getName));
             Controller.INSTANCE.setData(mappedData);
             Controller.INSTANCE.start();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
             try {

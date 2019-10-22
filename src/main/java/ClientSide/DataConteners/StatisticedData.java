@@ -7,12 +7,11 @@ import java.util.List;
  * @author F0urth
  */
 
-public
-    class StatisticedData {
+public class StatisticedData {
 
     private ChartData data;
 
-    static StatisticedData getInstance(String statTitle, List<Double> statiYData, List<Date> timeLine){
+    static StatisticedData getInstance(String statTitle, List<Double> statiYData, List<Date> timeLine) {
         return new StatisticedData(statTitle, statiYData, timeLine);
     }
 

@@ -8,8 +8,7 @@ import java.util.stream.Collectors;
  * @author F0urth
  */
 
-public final
-    class StatisticedChartData {
+public final class StatisticedChartData {
 
     private ChartData data;
 
@@ -54,6 +53,7 @@ public final
         List<Double> statData = mapValue(aDouble);
         return StatisticedData.getInstance("Q1", statData, getXData());
     }
+
     public StatisticedData getQ2() {
         var aDouble = getYData()
             .stream()

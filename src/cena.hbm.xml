@@ -10,7 +10,7 @@
         </id>
 
         <property name="idCena"></property>
-        <property name="date"></property>
+        <property name="getData"></property>
         <property name="price"></property>
         <property name="idProdukt"></property>
 

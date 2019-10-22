@@ -16,25 +16,23 @@ import java.util.List;
  * @author F0urth
  */
 
-public final
-    class Database {
-
+public final class Database {
 
     private SessionFactory sessionFactory;
 
     public static Database getInstance() {
         return new Database();
     }
+
     private Database() {
         this.sessionFactory = new Configuration().configure().buildSessionFactory();
     }
-
 
     public List<MergedData> getMergetData() {
         var prices = getCenaData();
         var produkts = getProduktData();
         var res = new ArrayList<MergedData>();
-        for (var price: prices) {
+        for (var price : prices) {
             res.add(
                 new MergedData(price.getIdCena(),
                     price.getData(), price.getPrice(),
@@ -55,7 +53,7 @@ public final
         return getData(session.createQuery("from Cena", Cena.class), session);
     }
 
-    private<T> List<T> getData(Query<T> query, Session session) {
+    private <T> List<T> getData(Query<T> query, Session session) {
         session.beginTransaction();
         var prices = query.list();
         session.getTransaction().commit();

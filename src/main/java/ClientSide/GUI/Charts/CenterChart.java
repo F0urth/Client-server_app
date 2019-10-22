@@ -13,10 +13,11 @@ import java.util.List;
  * @author F0urth
  */
 
-public final
-    class CenterChart {
+public final class CenterChart {
 
     private XYChart chart;
+
+    private static final Integer LABEL_ROTATION = 45;
 
     public static CenterChart getInstance(int width, int height, List<ChartData> chartData) {
         return new CenterChart(width, height, chartData);
@@ -45,7 +46,7 @@ public final
         this.chart.getStyler().setChartTitleVisible(true);
         this.chart.getStyler().setLegendPosition(Styler.LegendPosition.InsideNW);
         this.chart.getStyler().setYAxisLogarithmic(true);
-        this.chart.getStyler().setXAxisLabelRotation(45);
+        this.chart.getStyler().setXAxisLabelRotation(LABEL_ROTATION);
 
     }
 

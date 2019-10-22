@@ -6,8 +6,7 @@ import java.util.Date;
  * @author F0urth
  */
 
-public
-    class Cena {
+public class Cena {
 
     private Integer idCena;
     private Date data;

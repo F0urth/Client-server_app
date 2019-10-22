@@ -1,12 +1,10 @@
 package ClientSide;
 
+import Absolute.MergedData;
 import ClientSide.Communication.CommunicationHandler;
 import ClientSide.DataConteners.ChartData;
-
 import ClientSide.GUI.ChatGUI.ChatGUI;
-
 import ClientSide.GUI.FrontGUI;
-import Absolute.MergedData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,8 +17,7 @@ import java.util.stream.Collectors;
  * @author F0urth
  */
 
-public
-    enum Controller {
+public enum Controller {
     INSTANCE;
 
     private Map<String, List<MergedData>> dataMap;
@@ -28,12 +25,12 @@ public
     private CommunicationHandler communicationHandler;
     private FrontGUI gui;
     private ChatGUI chat;
-    private Queue<String> massagesBeforeLoging;
+    private Queue<String> massagesBeforeLogging;
 
     public void setData(Map<String, List<MergedData>> data) {
         this.dataMap = data;
         this.data = new ArrayList<>();
-        massagesBeforeLoging = new ConcurrentLinkedQueue<>();
+        massagesBeforeLogging = new ConcurrentLinkedQueue<>();
     }
 
     public void start() {
@@ -65,7 +62,7 @@ public
 
     public void setChat(ChatGUI chat) {
         this.chat = chat;
-        this.chat.addMassiveMassges(this.massagesBeforeLoging);
+        this.chat.addMassiveMassges(this.massagesBeforeLogging);
         this.gui.changeActionListener();
     }
 
@@ -74,8 +71,11 @@ public
     }
 
     public void appendToChatMassages(String massage) {
-        if (this.chat != null) this.chat.appendMassage(massage);
-        else this.massagesBeforeLoging.add(massage);
+        if (this.chat != null) {
+            this.chat.appendMassage(massage);
+        } else {
+            this.massagesBeforeLogging.add(massage);
+        }
 
     }
 }

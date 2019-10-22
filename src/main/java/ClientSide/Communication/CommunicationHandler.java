@@ -14,12 +14,18 @@ import java.util.concurrent.Executors;
  * @author F0urth
  */
 
-public
-    class CommunicationHandler {
+public class CommunicationHandler {
 
     private SocketChannel channel;
     private Queue<String> outQueue;
     private ByteBuffer buffer;
+
+    private static class ReadConsts {
+        private static final Integer END_OF_COMMUNICATION = -1;
+        private static final Integer MINIMUM_MESSAGE = 1;
+        private static final Integer BUFFER_SIZE = 1024;
+    }
+
     public static CommunicationHandler getInstance(SocketChannel channel) throws IOException {
         return new CommunicationHandler(channel);
     }
@@ -27,8 +33,8 @@ public
     private CommunicationHandler(SocketChannel sc) throws IOException {
         this.channel = sc;
         this.channel.configureBlocking(false);
-        this.outQueue= new ConcurrentLinkedQueue<>();
-        this.buffer = ByteBuffer.allocate(1024);
+        this.outQueue = new ConcurrentLinkedQueue<>();
+        this.buffer = ByteBuffer.allocate(ReadConsts.BUFFER_SIZE);
     }
 
     public void run() {
@@ -37,7 +43,6 @@ public
     }
 
     private void oneIteration() {
-       // System.out.println("One Iteration CommunicationHandler.class presents");
         if (!outQueue.isEmpty()) {
             try {
                 this.channel.write(ByteBuffer.wrap(outQueue.poll().getBytes()));
@@ -48,27 +53,25 @@ public
         read();
     }
 
+
     private void read() {
         try {
-            int amo_read = -1;
-            try {
-                amo_read = channel.read(
-                    buffer.clear());
-            } catch (Exception ex){
-                System.out.println(ex);
+            int amo_read = channel.read(buffer.clear());
+            if (amo_read == ReadConsts.END_OF_COMMUNICATION) {
+                disconnect();
             }
-            if (amo_read == -1) disconnect();
-            if (amo_read < 1) return;
+            if (amo_read < ReadConsts.MINIMUM_MESSAGE) {
+                return;
+            }
             buffer.flip();
             var massage = new String(buffer.array()).trim();
-            if (massage.matches("[0-9]+")){
+            if (massage.matches("[0-9]+")) {
                 new DataLoader(Integer.valueOf(massage)).loadData();
             } else {
-                Controller.INSTANCE
-                    .appendToChatMassages(massage);
+                Controller.INSTANCE.appendToChatMassages(massage);
             }
 
-        } catch (Exception ex) {
+        } catch (IOException ex) {
             disconnect();
             JOptionPane.showMessageDialog(new JFrame(), ex.getMessage(),
                 "Exception", JOptionPane.WARNING_MESSAGE);
@@ -83,14 +86,15 @@ public
     private void disconnect() {
         try {
             this.channel.close();
-        } catch (Exception ex) {
+        } catch (IOException ex) {
             JOptionPane.showMessageDialog(new JFrame(), ex.getMessage(),
                 "Exception", JOptionPane.WARNING_MESSAGE);
         }
     }
 
     private void runner() {
-        while (true)
+        while (true) {
             oneIteration();
+        }
     }
 }

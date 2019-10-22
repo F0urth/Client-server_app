@@ -8,8 +8,7 @@ import java.util.List;
  * @author F0urth
  */
 
-public final
-    class ChartData {
+public final class ChartData {
 
     private final String chartTitle;
     private final List<Date> xList;
@@ -34,9 +33,7 @@ public final
         return this.chartTitle;
     }
 
-    public
-        static
-            class ChartDataBuilder {
+    public static class ChartDataBuilder {
 
         private String chartTitle;
         private List<Date> xList;

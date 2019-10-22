@@ -12,8 +12,8 @@ import java.awt.*;
  */
 
 public
-    class Login
-        extends JFrame {
+class Login
+    extends JFrame {
 
     private JPanel rootPanel;
     private JButton sendNickButton;
@@ -37,7 +37,7 @@ public
                 String nick = userNick.getText();
                 this.dispose();
                 Controller.INSTANCE
-                    .addToMassage("<Nick>"+nick);
+                    .addToMassage("<Nick>" + nick);
                 Controller.INSTANCE
                     .setChat(new ChatGUI(nick));
             });

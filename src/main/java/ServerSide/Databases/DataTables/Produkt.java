@@ -4,12 +4,10 @@ package ServerSide.Databases.DataTables;
  * @author F0urth
  */
 
-public
-    class Produkt {
+public class Produkt {
 
     private Integer idProdukt;
     private String nazwa;
-
 
     public Integer getIdProdukt() {
         return this.idProdukt;

@@ -17,22 +17,25 @@ import java.util.concurrent.Executors;
  * @author F0urth
  */
 
-public
-    class SingleChart {
+public class SingleChart {
 
     private StatisticedChartData data;
     private XYChart chart;
 
+    private static class Const {
+        private static final Integer SINGLE_CHART_WIDTH = 500;
+        private static final Integer SINGLE_CHART_HEIGHT = 300;
+    }
 
     public static SingleChart getInstance(StatisticedChartData data) {
         return new SingleChart(data);
     }
 
-    private SingleChart(StatisticedChartData data){
+    private SingleChart(StatisticedChartData data) {
         this.data = data;
         this.chart = new XYChartBuilder()
-            .width(500)
-            .height(300)
+            .width(Const.SINGLE_CHART_WIDTH)
+            .height(Const.SINGLE_CHART_HEIGHT)
             .title(data.getTitle())
             .yAxisTitle("Price")
             .xAxisTitle("Data")
@@ -44,7 +47,6 @@ public
         StatisticedData q1 = data.getQ1();
         StatisticedData q2 = data.getQ2();
         StatisticedData q3 = data.getQ3();
-
 
 
         XYSeries series = chart.addSeries(

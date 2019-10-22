@@ -7,23 +7,21 @@ import java.util.Date;
  * @author F0urth
  */
 
-public
-    class MergedData
-        implements Serializable {
+public class MergedData implements Serializable {
 
     public static final long serialVersionUID = -1337L;
 
     private final Integer idCena;
     private final Date data;
     private final Double price;
-    private final String nazwa;
+    private final String name;
 
 
-    public MergedData(Integer idCena, Date data, Double price, String nazwa) {
+    public MergedData(Integer idCena, Date data, Double price, String name) {
         this.idCena = idCena;
         this.data = data;
         this.price = price;
-        this.nazwa = nazwa;
+        this.name = name;
     }
 
     public Integer getIdCena() {
@@ -38,8 +36,8 @@ public
         return price;
     }
 
-    public String getNazwa() {
-        return nazwa;
+    public String getName() {
+        return name;
     }
 
     @Override
@@ -48,7 +46,7 @@ public
             "idCena=" + idCena +
             ", data=" + data +
             ", price=" + price +
-            ", nazwa='" + nazwa + '\'' +
+            ", name='" + name + '\'' +
             '}';
     }
 }
